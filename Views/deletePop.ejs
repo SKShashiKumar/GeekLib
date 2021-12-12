@@ -1,0 +1,34 @@
+<head>
+    <link rel="icon" href="/img/geeky.png" type="image">
+    <title>GeekyLib | DeleteBooks</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            background: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<script>
+    function changeLoad() {
+        document.getElementById('delOptions').innerHTML = '<img src="/img/icon-park-outline_loading.png" height="20px" width="20px" /> Deleting book'
+    }
+</script>
+
+<form action="/deleteBook/<%= name %>" method="post" class="deleteForm" onsubmit="changeLoad()">
+    <div class="delHeader">
+        <a class="closeTimesDelete" href="/">&times;</a>
+    </div>
+
+    <div class="bookContainer">
+        <img src="/img/Warning.png" class="deleteWarning" />
+        <div class="bookContents">
+            <p>Are you sure you want to delete<br />
+                “<%= name %>” ?</p>
+        </div>
+        <div class="delOptions" id='delOptions'>
+            <a href="/" class="cancelBook">No</a>
+            <button class="addBook">Yes</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,98 @@
+<head>
+    <link rel="icon" href="/img/geeky.png" type="image">
+    <title>GeekyLib Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<%- include('./nav.ejs') %>
+
+    <% if(datas.length> 0) { %>
+        <div class="hiddenButton">
+            <a href="/add" class="addBookButton">Add Book</a>
+        </div>
+        <div class="printable">
+            <table>
+                <caption>
+                    <span class="mainCaption">Library Item List</span> <span id="toasts"><%= tst %></span>
+                </caption>
+                <thead>
+                    <tr>
+                        <th>Sl No</th>
+                        <th>Name</th>
+                        <th>Author</th>
+                        <th>Genere</th>
+                        <th>Edition</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="datas">
+
+                    <% let cnt=0;datas.forEach(data=> { cnt = cnt +1 %>
+                        <tr>
+                            <td>
+                                <%= cnt %>
+                            </td>
+                            <td>
+                                <%= data.name %>
+                            </td>
+                            <td>
+                                <%= data.author %>
+                            </td>
+                            <td>
+                                <%= data.genere %>
+                            </td>
+                            <td>
+                                <%= data.edition %>
+                            </td>
+                            <td class="actionTab">
+                                <a href="/updateBook/<%= data.sn %>/edit" class="editButton"> Edit </a>
+                                <a href="/deleteBook/<%= data.name %>/delete" class="deleteButton"> Delete </a>
+                            </td>
+        </div>
+        </tr>
+
+        <% }) %>
+            </tbody>
+            </table>
+            </div>
+
+            <% } else { %>
+                <div class="printable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sl No</th>
+                                <th>Name</th>
+                                <th>Author</th>
+                                <th>Genere</th>
+                                <th>Edition</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="emptyTable">
+                            <tr>
+                                <td class="emptyData" colspan="6" rowspan="5">
+                                    <h1 class="emptyMessage">&quot;No books available &quot;</h1>
+                                    <a href="/add" class="addBookButton">Add Book</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <% } %>
+
+                    <script>
+                        let tsts = document.getElementById('toasts')
+                        let tstsContent = document.getElementById('toasts').textContent
+
+                        console.log(tstsContent)
+
+                        if ((tstsContent === 'Changes_saved') || (tstsContent === 'Book_added')) {
+                            tsts.classList.add("Add");
+                            setTimeout(function () { tsts.classList.remove("Add"); }, 2000);
+                        }
+                        else if (tstsContent === 'Book_deleted') {
+                            tsts.classList.add("Delete");
+                            setTimeout(function () { tsts.classList.remove("Delete"); }, 2000);
+                        }
+                    </script>

@@ -1,0 +1,52 @@
+<head>
+    <link rel="icon" href="/img/geeky.png" type="image">
+    <title>GeekyLib | UpdateBooks</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<script>
+    function changeLoad() {
+        document.getElementById('saveOptions').innerHTML = '<img src="/img/icon-park-outline_loading.png" height="20px" width="20px" /> Saving changes'
+    }
+</script>
+<style>
+    body {
+        background: rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<form action="/updateBook/<%= data[0].sn %>/" method="post" class="addBookForm" onsubmit="changeLoad()">
+    <div class="bookHeader">
+        <p class="popTitle">Edit book details</p>
+        <a class="closeTimes" href="/">&times;</a>
+    </div>
+
+    <div class="bookContainer">
+        <div class="bookContents">
+            <div class="contents">
+                <label for="name">Name</label>
+                <label for="genere">Genere</label>
+            </div>
+            <div class="contents">
+                <input type="text" name="name" id="name" placeholder="Enter Book Name" required
+                    value="<%= data[0].name %>" />
+                <input type="text" name="genere" id="genere" placeholder="Enter genere" required
+                    value="<%= data[0].genere %>" />
+            </div>
+            <div class="contents">
+                <label for="author">Author</label>
+                <label for="edition">Edition</label>
+            </div>
+            <div class="contents">
+                <input type="text" name="author" id="author" placeholder="Enter author name" required
+                    value="<%= data[0].author %>" />
+                <input type="text" name="edition" id="edition" placeholder="Enter edition" required
+                    value="<%= data[0].edition %>" />
+            </div>
+        </div>
+        <div class="btnContainer" id="saveOptions">
+            <a href="/" class="cancelBook">Cancel</a>
+            <button class="addBook">Save</button>
+        </div>
+    </div>
+</form>

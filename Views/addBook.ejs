@@ -1,0 +1,98 @@
+<head>
+    <link rel="icon" href="/img/geeky.png" type="image">
+    <title>GeekyLib | AddBooks</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            background: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<form action="/saveBook" method="post" class="addBookForm" onsubmit="changeLoad()">
+    <div class="bookHeader">
+        <p class="popTitle">Add a new book</p>
+        <a class="closeTimes" href="/">&times;</a>
+    </div>
+    <div class="bookContainer">
+        <div class="bookContents">
+            <div class="contents">
+                <label for="name" id="nameEmpty">Name</label>
+                <label for="genere" id="genereEmpty">Genere</label>
+            </div>
+            <div class="contents">
+                <input type="text" name="name" id="name" placeholder="Enter Book Name" required />
+                <input type="text" name="genere" id="genere" placeholder="Enter genere" required />
+            </div>
+
+            <div class="contents">
+                <label for="author" id="authorEmpty">Author</label>
+                <label for="edition" id="editionEmpty">Edition</label>
+            </div>
+            <div class="contents">
+                <input type="text" name="author" id="author" placeholder="Enter author name" required />
+                <input type="text" name="edition" id="edition" placeholder="Enter edition" required />
+            </div>
+        </div>
+        <div class="btnContainer" id="saveOptions">
+            <a href="/" class="cancelBook">Cancel</a>
+            <button class="addBook" onclick="validate()">Add Book</button>
+        </div>
+    </div>
+</form>
+
+<script>
+
+
+    function validate() {
+        // Id selection
+        let nameMt = document.getElementById('name')
+        let genereMt = document.getElementById('genere')
+        let authorMt = document.getElementById('author')
+        let editionMt = document.getElementById('edition')
+
+        let nameEmpty = document.getElementById('nameEmpty')
+        let genereEmpty = document.getElementById('genereEmpty')
+        let authorEmpty = document.getElementById('authorEmpty')
+        let editionEmpty = document.getElementById('editionEmpty')
+
+        // console.log(typeof(nameMtv.value))
+
+        if (nameMt.value === '') {
+            nameEmpty.style.color = 'red'
+            nameMt.style.borderColor = 'red'
+            setTimeout(function () {
+                nameEmpty.style.color = 'black'
+                nameMt.style.borderColor = 'dodgerblue'
+            }, 3000)
+        }
+        else if (genereMt.value === '') {
+            genereEmpty.style.color = 'red'
+            genereMt.style.borderColor = 'red'
+            setTimeout(function () {
+                genereEmpty.style.color = 'black'
+                genereMt.style.borderColor = 'dodgerblue'
+            }, 3000)
+        }
+        else if (authorMt.value === '') {
+            authorEmpty.style.color = 'red'
+            authorMt.style.borderColor = 'red'
+            setTimeout(function () {
+                authorEmpty.style.color = 'black'
+                authorMt.style.borderColor = 'dodgerblue'
+            }, 3000)
+        }
+        else if (editionMt.value === '') {
+            editionEmpty.style.color = 'red'
+            editionMt.style.borderColor = 'red'
+            setTimeout(function () {
+                editionEmpty.style.color = 'black'
+                editionMt.style.borderColor = 'dodgerblue'
+            }, 3000)
+        }
+    }
+
+    function changeLoad() {
+        document.getElementById('saveOptions').innerHTML = '<img src="/img/icon-park-outline_loading.png" height="20px" width="20px" /> Adding book to the library'
+    }
+</script>
